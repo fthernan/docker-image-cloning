@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  docker-image-cloning:
+    image: franciscohv/docker-image-cloning:1.0.0
+    build:
+        context: ./
+        tags:
+            - "franciscohv/docker-image-cloning:latest"
+    env_file: "./app/files/.env"
+    volumes:
+      - ./app/files:/app/files
+      - /var/run/docker.sock:/var/run/docker.sock # Needed for Docker commands
+    restart: unless-stopped
